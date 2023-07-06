@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-
 public class FileReader {
 
     public Profile getDataFromFile(File file) {
@@ -41,11 +40,13 @@ public class FileReader {
                         break;
                     case "Phone":
                         profile.setPhone(Long.parseLong(value));
+                        break;
+                    default:
+                        break;
                 }
             }
         }
         catch(IOException ex){
-            System.out.println(ex.getMessage());
         }
 
         return profile;
