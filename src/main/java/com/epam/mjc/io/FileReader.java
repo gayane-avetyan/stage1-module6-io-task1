@@ -46,7 +46,7 @@ public class FileReader {
                         profile.setPhone(Long.parseLong(value));
                         break;
                     default:
-                        logger.log(Level.WARNING, "Unknown key: " + key);
+                        logger.log(Level.INFO, "Unknown key");
                         break;
                 }
             }
