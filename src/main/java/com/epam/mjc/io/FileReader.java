@@ -4,22 +4,26 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class FileReader {
+    private static final Logger logger = Logger.getLogger(FileReader.class.getName());
 
     public Profile getDataFromFile(File file) {
 
         Profile profile = new Profile();
 
-        try(FileInputStream inputStream = new FileInputStream(file)){
+        try (FileInputStream inputStream = new FileInputStream(file)) {
 
-            String fileData = "";
+            StringBuilder fileData = new StringBuilder();
 
             int c;
-            while((c = inputStream.read()) != -1){
-                fileData += (char)c;
+            while ((c = inputStream.read()) != -1) {
+                fileData.append((char) c);
             }
 
-            String[] lines = fileData.split("\n");
+            String[] lines = fileData.toString().split("\n");
 
             for (String line : lines) {
 
@@ -28,7 +32,7 @@ public class FileReader {
                 String key = splited[0].trim();
                 String value = splited[1].trim();
 
-                switch (key){
+                switch (key) {
                     case "Name":
                         profile.setName(value);
                         break;
@@ -45,8 +49,8 @@ public class FileReader {
                         break;
                 }
             }
-        }
-        catch(IOException ex){
+        } catch (IOException ex) {
+            logger.log(Level.WARNING, ex.getMessage());
         }
 
         return profile;
