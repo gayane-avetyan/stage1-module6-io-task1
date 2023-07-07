@@ -46,6 +46,7 @@ public class FileReader {
                         profile.setPhone(Long.parseLong(value));
                         break;
                     default:
+                        System.out.println("Unknown key: " + key);
                         break;
                 }
             }
